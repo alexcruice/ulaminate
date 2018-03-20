@@ -1,0 +1,24 @@
+PATH
+  remote: .
+  specs:
+    ulaminate (0.1.0)
+      bitset (~> 1.1)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    bitset (1.1.0)
+    minitest (5.11.3)
+    rake (10.5.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler (~> 1.16)
+  minitest (~> 5.0)
+  rake (~> 10.0)
+  ulaminate!
+
+BUNDLED WITH
+   1.16.1
