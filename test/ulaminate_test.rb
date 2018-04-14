@@ -5,7 +5,7 @@ class UlaminateTest < Minitest::Test
     refute_nil ::Ulaminate::VERSION
   end
 
-  def test_it_does_something_useful
-    assert false
+  def test_ulam_sequence_returns_enumerator
+    assert_kind_of(Enumerator, Ulaminate.ulam_sequence(1))
   end
 end

@@ -1,5 +1,8 @@
 require "ulaminate/version"
+require "ulam_sequence"
 
 module Ulaminate
-  # Your code goes here...
+  def self.ulam_sequence(size)
+    UlamSequence.new(size).each
+  end
 end
