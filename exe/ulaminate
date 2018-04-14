@@ -1,3 +1,37 @@
 #!/usr/bin/env ruby
 
 require "ulaminate"
+require "optparse"
+require "chunky_png"
+
+Options = Struct.new(:size)
+options = Options.new(7)
+
+OptionParser.new do |parser|
+  parser.banner = "Usage: ulaminate [options]"
+
+  parser.on("-h", "--help", "Prints this help") do
+    puts parser
+    exit
+  end
+
+  parser.on("--size SIZE", Integer, "The size of the side of the spiral") do |size|
+    options.size = size
+  end
+end.parse!
+
+png = ChunkyPNG::Image.new(options.size, options.size, ChunkyPNG::Color::WHITE)
+
+begin
+  sequence = Ulaminate.ulam_sequence(options.size)
+
+  loop do
+    x, y, _, is_prime = sequence.next
+    next unless is_prime
+    png[x, y] = ChunkyPNG::Color::BLACK
+  end
+rescue StopIteration
+  # swallow sequence end
+end
+
+puts png.save("ulam_spiral_#{options.size}.png", :best_compression).path
